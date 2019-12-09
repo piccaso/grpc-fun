@@ -8,6 +8,17 @@ services:
     tmpfs:
       - /tmp
     restart: always
-    ports:
-      - "65211:5001"      
-    
+    labels:
+      traefik.enable: "true"
+      traefik.protocol: "https"
+      traefik.docker.network: "web"
+      traefik.frontend.rule: "Host: grpc-fun.m.887.at"
+      traefik.frontend.headers.customResponseHeaders: "X-Robots-Tag: noindex, nofollow, noarchive"
+      traefik.port: "5001"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+
