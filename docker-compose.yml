@@ -1,0 +1,13 @@
+version: "2.2"
+services:
+  server:
+    build: .
+    read_only: true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp
+    restart: always
+    ports:
+      - "65211:5001"      
+    
